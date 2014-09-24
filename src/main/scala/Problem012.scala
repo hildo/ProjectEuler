@@ -16,7 +16,7 @@ object Problem012 {
   }
 
   // Got this function from http://rosettacode.org/wiki/Factors_of_an_integer#Scala
-  def factors(n: Int) = Range.apply(1, scala.math.sqrt(n).toInt).filter(n % _ == 0).flatMap(x => List(n/x,x)).toList.sort(_ > _)
+  def factors(n: Int) = Range.apply(1, scala.math.sqrt(n).toInt).filter(n % _ == 0).flatMap(x => List(n/x,x)).toList.sortWith(_ > _)
 
   def getNum(): Int = {
     triangleNumbers.dropWhile(factors(_).length < 501).head
