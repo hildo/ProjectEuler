@@ -3,6 +3,8 @@
  * and open the template in the editor.
  */
 
+package com.csea.projecteuler
+
 object Problem015b {
 
   def shiftRight(row: List[BigInt]): List[BigInt] = 0::row

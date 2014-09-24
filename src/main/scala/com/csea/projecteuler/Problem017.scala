@@ -3,6 +3,8 @@
  * and open the template in the editor.
  */
 
+package com.csea.projecteuler
+
 object Problem017 {
 
   val onesMap = Map[Int, String](1 -> "one", 2 -> "two", 3 -> "three", 4 -> "four", 5 -> "five", 6 -> "six",

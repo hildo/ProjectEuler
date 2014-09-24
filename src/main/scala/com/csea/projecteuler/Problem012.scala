@@ -3,6 +3,8 @@
  * and open the template in the editor.
  */
 
+package com.csea.projecteuler
+
 object Problem012 {
   val triangleNumbers: Stream[Int] = {
     def defineTri(idx: Int, priorValue: Int): Stream[Int] = idx match {

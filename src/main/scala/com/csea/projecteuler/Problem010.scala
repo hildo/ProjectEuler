@@ -3,6 +3,8 @@
  * and open the template in the editor.
  */
 
+package com.csea.projecteuler
+
 object Problem010 {
 
 //  def primes: Stream[Long] = 2 #:: prime3

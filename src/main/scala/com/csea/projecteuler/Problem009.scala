@@ -3,6 +3,8 @@
  * and open the template in the editor.
  */
 
+package com.csea.projecteuler
+
 object Problem009 {
 
   def pythTriple(n: Int) = ((2 * n) + 1, 2 * n * (n + 1), 2 * n * (n + 1) + 1)

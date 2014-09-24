@@ -3,6 +3,8 @@
  * and open the template in the editor.
  */
 
+package com.csea.projecteuler
+
 object Problem016 {
 
   def sum(powerOf: Int): Int = {

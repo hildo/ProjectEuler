@@ -3,6 +3,8 @@
  * and open the template in the editor.
  */
 
+package com.csea.projecteuler
+
 class Grid(xLimit: Int, yLimit: Int) {
 
   type Point = (Int, Int)

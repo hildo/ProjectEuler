@@ -3,6 +3,8 @@
  * and open the template in the editor.
  */
 
+package com.csea.projecteuler
+
 object Problem014 {
 
   def evenFn(n: BigInt): BigInt = n / 2

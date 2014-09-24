@@ -3,6 +3,8 @@
  * and open the template in the editor.
  */
 
+package com.csea.projecteuler
+
 object Problem010b {
   def isPrime(n : Int) : Boolean = n == smallestDivisor(n)
   def smallestDivisor(n : Int) : Int = findDivisor(n, 2)
