@@ -6,11 +6,6 @@
 
 package com.csea.projecteuler
 
-abstract class Point(val value: Int)
-
-class EndPoint(value:Int) extends Point(value)
-class MiddlePoint(value:Int, val left: Point, val right: Point) extends Point(value)
-
 object Problem018 {
 
   val valueArrays:Array[Array[Int]] = {
@@ -33,6 +28,20 @@ object Problem018 {
               values6,values7,values8,values9,values10,
               values11,values12,values13,values14,values15)
   }
+
+  def nextValue(input: Array[Int], index: Int) : (Int, Int) = {
+    if (input.length == 1) {
+      (0, input(0))
+    } else {
+      val value1 = input(index)
+      val value2 = input(index+1)
+      if (value1 >= value2) {
+        (index, value1)
+      } else {
+        (index+1, value2)
+      }
+    }
+  }
   
   def printArrays = {
     for (intArray <- valueArrays) {
@@ -49,6 +58,15 @@ object Problem018 {
    */
   def main(args: Array[String]): Unit = {
     printArrays
+    var position = 0
+    var pathValues = new Array[Int](0)
+    for (intArray <- valueArrays) {
+      val v = nextValue(intArray, position)
+      position = v._1
+      pathValues = pathValues  :+ v._2
+    }
+    
+    println(pathValues.sum)
   }
 
 }

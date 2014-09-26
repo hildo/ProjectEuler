@@ -38,6 +38,9 @@
                       <goals>
                           <goal>compile</goal>
                       </goals>
+                      <configuration>
+                          <recompileMode>modified-only</recompileMode>
+                      </configuration>
                   </execution>
               </executions>
           </plugin>
