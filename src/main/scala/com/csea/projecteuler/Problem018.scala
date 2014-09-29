@@ -6,6 +6,35 @@
 
 package com.csea.projecteuler
 
+
+// A Point is the index of the array containing the point, plus the position in the array
+class Point(val arrayIndex: Int, val positionInArray: Int)
+
+class Path(val points: List[Point], pointValues: Array[Array[Int]]) {
+  override def toString = {
+    val builder: StringBuilder = new StringBuilder
+    builder.append("[")
+    for (point <- points) {
+      builder.append("<")
+      builder.append(point.arrayIndex)
+      builder.append(",")
+      builder.append(point.positionInArray)
+      builder.append(">")
+    }
+    builder.append(",")
+    builder.append(pathValue)
+    builder.append("]")
+    builder.toString
+  }
+  
+  def pathValue = {
+    points.foldLeft(0)((acc, p) => {
+        val arr = pointValues(p.arrayIndex)
+        acc + arr(p.positionInArray)
+      })
+  }
+}
+
 object Problem018 {
 
   val valueArrays:Array[Array[Int]] = {
@@ -53,20 +82,37 @@ object Problem018 {
       print("]\n")
     }
   }
+  
+  def buildPossiblePaths(path: Path): List[Path] = {
+    val lastPoint = path.points.head
+    val leftPoint = new Point(lastPoint.arrayIndex + 1, lastPoint.positionInArray)
+    val rightPoint = new Point(lastPoint.arrayIndex + 1, lastPoint.positionInArray + 1)
+    val leftPath = new Path(leftPoint :: path.points, valueArrays)
+    val rightPath = new Path(rightPoint :: path.points, valueArrays)
+    List(leftPath, rightPath)
+  }
+  
+  def buildPossiblePaths(paths: List[Path]): List[Path] = {
+    var returnValue = List[Path]()
+    for (path <- paths) {
+      val newPaths = buildPossiblePaths(path)
+      returnValue = returnValue ::: newPaths
+    }
+    returnValue
+  }
+  
   /**
    * @param args the command line arguments
    */
   def main(args: Array[String]): Unit = {
-    printArrays
-    var position = 0
-    var pathValues = new Array[Int](0)
-    for (intArray <- valueArrays) {
-      val v = nextValue(intArray, position)
-      position = v._1
-      pathValues = pathValues  :+ v._2
+    var nextPaths = buildPossiblePaths(List(new Path(List(new Point(0,0)), valueArrays)))
+    var lastPoint = nextPaths.head.points.head
+    while (lastPoint.arrayIndex < valueArrays.length - 1) {
+      nextPaths = buildPossiblePaths(nextPaths)
+      lastPoint = nextPaths.head.points.head
     }
     
-    println(pathValues.sum)
+    println(nextPaths.maxBy(_.pathValue).toString)
   }
 
 }
