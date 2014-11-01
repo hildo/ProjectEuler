@@ -14,7 +14,7 @@ object Problem026 {
   val nats = from(1)
   
   def recurringCycleLength(n: Int) = {
-    if (FindPrimes.isPrime(n)) {
+    if (Primes.isPrime(n)) {
       nats.find(i => (TEN.pow(i) - 1) % n == 0 ).get
     } else {
       0

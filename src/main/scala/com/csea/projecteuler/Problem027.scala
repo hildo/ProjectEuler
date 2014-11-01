@@ -16,13 +16,14 @@ object Problem027 {
   val nats = from(0)
   
   def consecutivePrimes(a: Int, b: Int) = {
-    nats.prefixLength(i => FindPrimes.isPrime(quad(i, a, b)))
+    nats.prefixLength(i => Primes.isPrime(quad(i, a, b)))
   }
+  
+  def includeNegation(ints: List[Int]) = ints.flatMap(n => List(n, -n))
   
   def main(args: Array[String]): Unit = {
     val tuples = for {
-      a <- -999 to 999; b <- -999 to 999
-      if (FindPrimes.isPrime(math.abs(b)))
+      a <- -999 to 999; b <- includeNegation(Primes.getPrimesLessThan(1000).toList)
       if (b > -(FORTY_SQUARED + (40 * a)))
       if (a % 2 != 0)
     } yield (a, b)

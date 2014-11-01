@@ -4,20 +4,17 @@
 
 package com.csea.projecteuler
 
-object FindPrimes {
+object Primes {
 
   def isPrime(n : Int) : Boolean = {
-
     n == smallestDivisor(n)
   }
 
   def smallestDivisor(n : Int) : Int = {
-
     findDivisor(n, 2)
   }
 
   def findDivisor(n : Int, testDivisor : Int) : Int = {
-
     if (square(testDivisor) > n)
       n
     else if (divides(testDivisor, n))
@@ -26,16 +23,19 @@ object FindPrimes {
       findDivisor(n, testDivisor + 1)
   }
 
-  def square(n : Int) : Int = {
+  def square(n : Int) : Int = n * n
 
-    n * n
+  def divides(d : Int, n : Int) : Boolean = (n % d) == 0
+
+  def from(n: Int) : Stream[Int] = n #:: from(n+1)
+  def sieve(s: Stream[Int]): Stream[Int] =
+    s.head #:: sieve(s.tail filter (_ % s.head != 0))
+  val primes = sieve(from(2)) // This is a Stream of Prime Numbers
+  
+  def getPrimesLessThan(upperLimit: Int) = {
+    primes.takeWhile(n => n < upperLimit)
   }
-
-  def divides(d : Int, n : Int) : Boolean = {
-
-    (n % d) == 0
-  }
-
+  
   /**
    * @param args the command line arguments
    */
