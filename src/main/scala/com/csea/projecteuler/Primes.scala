@@ -1,5 +1,6 @@
 /*
  * From http://louisbotterill.blogspot.com.au/2009/01/scala-example-finding-prime-numbers.html
+ * http://louisbotterill.blogspot.com.au/2009/07/scala-lazy-evaluation-and-sieve-of.html
  */
 
 package com.csea.projecteuler
