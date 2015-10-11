@@ -22,6 +22,7 @@ object Problem032 {
                                 if (isPandigital(asString))
                                 ) yield product
 
+      // answer is 45228
      Console.println(products.distinct.sum)
   }
                       
