@@ -7,8 +7,10 @@ package com.csea.projecteuler
 
 object Primes {
 
-  def isPrime(n : Int) : Boolean = {
-    n == smallestDivisor(n)
+  def isPrime(n : Int) : Boolean = n match {
+    case 0 => false
+    case 1 => false
+    case _ => n == smallestDivisor(n)
   }
 
   def smallestDivisor(n : Int) : Int = {
