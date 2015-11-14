@@ -3,6 +3,8 @@
  * and open the template in the editor.
  */
 
+package com.csea.projecteuler
+
 object Problem009b {
   def gcd (a: Int, b: Int) : Int = if (a == b)
     a else
