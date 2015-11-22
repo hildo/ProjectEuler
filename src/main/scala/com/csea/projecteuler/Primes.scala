@@ -7,6 +7,8 @@ package com.csea.projecteuler
 
 object Primes {
 
+  type MyPred = (Int, Int) => Boolean
+    
   def isPrime(n : Int) : Boolean = n match {
     case 0 => false
     case 1 => false
@@ -31,13 +33,17 @@ object Primes {
   def divides(d : Int, n : Int) : Boolean = (n % d) == 0
 
   def from(n: Int) : Stream[Int] = n #:: from(n+1)
-  def sieve(s: Stream[Int]): Stream[Int] =
-    s.head #:: sieve(s.tail filter (_ % s.head != 0))
-  def primes = sieve(from(2)) // This is a Stream of Prime Numbers
+  
+  def sieve(s: Stream[Int],pred: MyPred): Stream[Int] = s.head #:: sieve(s.tail filter (pred(_, s.head)), pred)
+  
+  def primes = sieve(from(2), isNotDivisibleBy) // This is a Stream of Prime Numbers
+  def composites = from(4).filter(!isPrime(_))
   
   def getPrimesLessThan(upperLimit: Int) = {
     primes.takeWhile(n => n < upperLimit)
   }
+  
+  def isNotDivisibleBy: MyPred = _%_ != 0
   
   /**
    * @param args the command line arguments
