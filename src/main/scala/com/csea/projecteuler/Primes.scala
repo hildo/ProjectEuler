@@ -28,6 +28,8 @@ object Primes {
       findDivisor(n, testDivisor + 1)
   }
 
+  def divisors(n: Int): List[Int] = for (i <- List.range(1,n+1) if (n % i) == 0) yield i
+  
   def square(n : Int) : Int = n * n
 
   def divides(d : Int, n : Int) : Boolean = (n % d) == 0
