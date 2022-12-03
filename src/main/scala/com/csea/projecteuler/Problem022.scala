@@ -12,7 +12,7 @@ object Problem022 {
     io.Source.fromInputStream(getClass.getResourceAsStream("/p022_names.txt")).getLines.next.split(",").map(_.replaceAll("\"",""))
   }
   
-  def alphabeticalValue(name: String): Int = name.foldLeft(0)((sum, c) => sum + c.intValue - 64)
+  def alphabeticalValue(name: String): Int = name.foldLeft(0)((sum, c) => sum + c.toInt - 64)
   
   def main(args: Array[String]): Unit = {
     // should be 871198282

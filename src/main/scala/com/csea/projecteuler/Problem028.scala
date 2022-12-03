@@ -6,6 +6,8 @@
 
 package com.csea.projecteuler
 
+import scala.language.postfixOps
+
 /**
  * Using logic from http://www.mathblog.dk/project-euler-28-sum-diagonals-spiral/
  */
